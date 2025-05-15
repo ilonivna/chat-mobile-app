@@ -1,79 +1,68 @@
 import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
+import { withLayoutContext } from "expo-router";
+import { View, Pressable, Text } from "react-native";
+import EvilIcons from "@expo/vector-icons/EvilIcons";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Tabs } from "expo-router";
-import { Pressable, View } from "react-native";
-import EvilIcons from '@expo/vector-icons/EvilIcons';
-
+import { Link } from "expo-router";
 import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
-import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
+
+const Stack = withLayoutContext(createStackNavigator().Navigator);
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
-    <Tabs
+    <Stack
       screenOptions={{
         headerStyle: {
           backgroundColor: Colors.light.tint,
         },
         headerTintColor: Colors.light.background,
-        headerTitleAlign: 'left',
+        headerTitleAlign: "left",
+        headerTitle: "ChatApp",
         headerTitleStyle: {
-          fontWeight: 'bold',
-        }
-      }}
-    >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: "ChatApp",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-          headerRight: () => (
-            <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center'}}>
-              <Link href="/modal" asChild>
+          fontWeight: "bold",
+          fontSize: 18,
+        },
+        headerRight: () => (
+          <View
+            style={{
+              flexDirection: "row",
+              gap: 12,
+              alignItems: "center",
+              marginRight: 15,
+            }}
+          >
+            <Link href="/modal" asChild>
               <Pressable>
-                {({ pressed }) => (
-
-           <EvilIcons name="search" size={25}  color={Colors[colorScheme ?? "light"].text} />
-
+                {() => (
+                  <EvilIcons
+                    name="search"
+                    size={25}
+                    color={Colors[colorScheme ?? "light"].text}
+                  />
                 )}
               </Pressable>
             </Link>
-            
-              <Link href="/modal" asChild>
+
+            <Link href="/modal" asChild>
               <Pressable>
                 {({ pressed }) => (
-
                   <FontAwesome
                     name="info-circle"
                     size={25}
                     color={Colors[colorScheme ?? "light"].text}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                    style={{ opacity: pressed ? 0.5 : 1 }}
                   />
-
                 )}
               </Pressable>
-            </Link></View>
-
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="two"
-        options={{
-          title: "Tab Two",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-    </Tabs>
+            </Link>
+          </View>
+        ),
+      }}
+    />
   );
 }
