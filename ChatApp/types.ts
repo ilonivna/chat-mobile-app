@@ -5,6 +5,16 @@ export type MainTabParamList = {
     Calls: undefined;
 };
 
+export type RootStackParamList = {
+  '(tabs)': undefined;
+  modal: undefined;
+  ChatRoom: {
+    id: string;
+    user: User;
+  };
+  NotFound: undefined;
+};
+
 export type User = {
     id: string;
     name: string;

@@ -1,8 +1,12 @@
 import { ChatRoom } from "@/types";
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { Image, Pressable, Text, View } from "react-native";
 import styles from "./styles";
 import moment from 'moment';
+import { useNavigation } from "@react-navigation/native";
+import { RootStackParamList } from '@/types';
+import { StackNavigationProp } from "@react-navigation/stack";
+import { useRouter } from 'expo-router';
 
 
 const formatMessageTime = (timestamp: string) => {
@@ -21,15 +25,24 @@ const formatMessageTime = (timestamp: string) => {
 };
 
 
-
 export type ChatListItemProps = {
   chatRoom: ChatRoom;
 };
 
 const ChatListItem = (props: ChatListItemProps) => {
+    const router = useRouter();
   const { chatRoom } = props;
+const handleClick = () => {
+  router.push({
+    pathname: '/chatroom/[id]',
+    params: { id: chatRoom.id },
+  });
+};
+
   const user = chatRoom.users[1];
   return (
+
+    <Pressable onPress={handleClick}>
     <View style={styles.container}>
       <View style={styles.leftCont}>
         <Image source={{ uri: user.imageUri }} style={styles.avatar} />
@@ -42,6 +55,7 @@ const ChatListItem = (props: ChatListItemProps) => {
       <Text style={styles.time}>{formatMessageTime(chatRoom.lastMessage.createdAt)}</Text>
       
     </View>
+    </Pressable>
   );
 };
 
