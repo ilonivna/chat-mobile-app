@@ -23,7 +23,7 @@ fontWeight: 'bold',
 content: {
 fontSize: 16,
 color: 'dark-gray',
-maxWidth: 250,
+maxWidth: 240,
 },
 time: {
 fontSize: 16,
