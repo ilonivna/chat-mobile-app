@@ -54,8 +54,8 @@ function RootLayoutNav() {
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-        <Stack.Screen name="chatroom" options={{ title: "Chat"}}/>
-        <Stack.Screen name="NotFound" options={{ title: "Oops!"}}/>
+        <Stack.Screen name="chatroom/[id]" options={{ title: "Chat"}}/>
+        <Stack.Screen name="+not-found" options={{ title: "Oops!"}}/>
       </Stack>
     </ThemeProvider>
   );
