@@ -1,10 +1,21 @@
-import { useLocalSearchParams } from 'expo-router';
-import { Text } from 'react-native';
+import ChatMessageList from "@/components/ChatMessageList/ChatMessageList";
+import { useLocalSearchParams } from "expo-router";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function ChatRoomScreen() {
-  const { id } = useLocalSearchParams<{ id: string }>();
+  // const { id } = useLocalSearchParams<{ id: string }>();
 
   return (
-    <Text style={{color: 'white'}}>Chat Room ID: {id}</Text>
+    <View style={styles.container}>
+
+      <ChatMessageList />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#ece5dd",
+  },
+});

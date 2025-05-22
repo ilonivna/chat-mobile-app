@@ -1,4 +1,28 @@
-export default {
+export interface User {
+  id: string;
+  name: string;
+  imageUri: string;
+}
+
+export interface Message {
+  id: string;
+  content: string;
+  createdAt: string;
+  user: {
+    id: string;
+    name: string;
+  };
+}
+
+export interface Chat {
+  id: string;
+  users: User[];
+  messages: Message[];
+}
+
+
+
+export const ChatData: Chat =  {
 	id: '1',
 	users: [{
 		id: 'u1',
