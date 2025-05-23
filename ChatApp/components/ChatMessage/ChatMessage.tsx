@@ -1,6 +1,7 @@
 import { Chat } from "@/data/Chats";
 import { Message } from "@/types";
 import { StyleSheet, Text, View } from "react-native";
+import moment from "moment";
 
 export type ChatMessageProps = {
 message: Message;
@@ -16,12 +17,17 @@ export default function ChatMessage({ message, data }: ChatMessageProps) {
         <Text style={[styles.text, isMe ? styles.textMe : styles.textOther]}>
           {message.content}
         </Text>
+        <Text style={styles.date}>{moment(message.createdAt).format('LT')}</Text>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  date: {
+color: 'grey',
+fontSize: 12,
+  },
   container: {
     marginVertical: 4,
     paddingHorizontal: 10,
