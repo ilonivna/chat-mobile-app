@@ -15,6 +15,23 @@ import { useState } from "react";
 
 export default function ChatInput() {
   const [isShown, setIsShown] = useState(false);
+  const [message, setMessage] = useState('');
+
+const onMicPress = () =>{
+
+};
+
+const onSendPress = () => {
+
+};
+
+const handlePress = () => {
+  if (!message) {
+    onMicPress();
+  } else {
+    onSendPress();
+  }
+}
 
   return (
     <SafeAreaView style={styles.container}>
@@ -23,6 +40,9 @@ export default function ChatInput() {
           style={styles.input}
           placeholder="Type a message..."
           placeholderTextColor="#888"
+          multiline
+          value={message}
+          onChangeText={(text)=>{setMessage(text)}}
         />
         <View style={styles.add}>
           <SimpleLineIcons name="emotsmile" size={24} color="black" />
@@ -39,10 +59,13 @@ export default function ChatInput() {
             <EvilIcons name="paperclip" size={34} color="white" />
           </View>
         )}
-      </View>
-      <View style={styles.send}>
-        <FontAwesome name="microphone" size={24} color="white" />
-      </View>
+      </View><TouchableOpacity style={styles.send} onPress={handlePress}>
+      {!message ? 
+        <Text><FontAwesome name="microphone" size={24} color="white" /></Text>
+      : 
+       <Text><FontAwesome name="send" size={20} color="white" /></Text> 
+       } </TouchableOpacity>
+      
     </SafeAreaView>
   );
 }
