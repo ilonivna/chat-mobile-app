@@ -1,7 +1,6 @@
 import {
   SafeAreaView,
   StyleSheet,
-  Text,
   TextInput,
   TouchableOpacity,
   View,
@@ -18,11 +17,12 @@ export default function ChatInput() {
   const [message, setMessage] = useState('');
 
 const onMicPress = () =>{
-
+console.warn("Mic pressed")
 };
 
 const onSendPress = () => {
-
+console.warn(`Message ${message} sent`);
+setMessage("");
 };
 
 const handlePress = () => {
@@ -46,10 +46,11 @@ const handlePress = () => {
         />
         <View style={styles.add}>
           <SimpleLineIcons name="emotsmile" size={24} color="black" />
+          
           <TouchableOpacity onPress={() => setIsShown(!isShown)}>
-            <Text>
+        
               <AntDesign name="plus" size={24} color="black" />
-            </Text>
+           
           </TouchableOpacity>
         </View>
 
@@ -57,13 +58,14 @@ const handlePress = () => {
           <View style={styles.addFile}>
             <MaterialIcons name="add-a-photo" size={28} color="white" />
             <EvilIcons name="paperclip" size={34} color="white" />
+            
           </View>
         )}
       </View><TouchableOpacity style={styles.send} onPress={handlePress}>
       {!message ? 
-        <Text><FontAwesome name="microphone" size={24} color="white" /></Text>
+        <FontAwesome name="microphone" size={24} color="white" />
       : 
-       <Text><FontAwesome name="send" size={20} color="white" /></Text> 
+       <FontAwesome name="send" size={20} color="white" />
        } </TouchableOpacity>
       
     </SafeAreaView>
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
     position: "relative",
   },
   inputCont: {
-    backgroundColor: "white",
+    backgroundColor: "rgba(255, 255, 255, 0.63)",
     borderRadius: 20,
     flex: 1,
     maxHeight: 200,
@@ -89,12 +91,12 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 20,
     paddingLeft: 20,
-    marginRight: 50,
+    marginRight: 110,
   },
   send: {
     backgroundColor: "#0C6157",
     opacity: 0.8,
-    borderRadius: "50%",
+    borderRadius: 25,
     width: 50,
     height: 50,
     display: "flex",

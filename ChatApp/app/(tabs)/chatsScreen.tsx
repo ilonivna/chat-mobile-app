@@ -3,6 +3,7 @@ import { Text, View } from "@/components/Themed";
 import ChatListItem from "@/components/ChatListItem";
 import chatRooms from "../../data/ChatRooms";
 import { SafeAreaView } from 'react-native-safe-area-context';
+import FloatingButton from "@/components/FloatingButton/FloatingButton";
 
 
 export default function ChatsScreen() {
@@ -14,6 +15,7 @@ export default function ChatsScreen() {
         renderItem={({ item }) => <ChatListItem chatRoom={item} />}
         keyExtractor={(item)=>item.id}
       />
+      <FloatingButton/>
     </View>
   );
 }
