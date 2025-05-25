@@ -1,7 +1,7 @@
 import { FlatList, StyleSheet } from "react-native";
 import { Text, View } from "@/components/Themed";
 
-import chatRooms from "../../data/ChatRooms";
+import chatRooms from "../data/ChatRooms";
 import ContactListItem from "@/components/ContactListItem/ContactListItem";
 
 
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
     flex: 1,
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "center",
   },
   title: {

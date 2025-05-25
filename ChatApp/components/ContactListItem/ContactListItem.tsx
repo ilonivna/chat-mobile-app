@@ -25,14 +25,13 @@ const ContactListItem = (props: ContactListItemProps) => {
   return (
     <Pressable onPress={handleClick}>
       <View style={styles.container}>
-        <View style={styles.leftCont}>
+
           <Image source={{ uri: user.imageUri }} style={styles.avatar} />
 
-          <View style={styles.midCont}>
+
             <Text style={styles.name}>{user.name}</Text>
 
-          </View>
-        </View>
+
 
       </View>
     </Pressable>
