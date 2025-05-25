@@ -1,17 +1,21 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import AntDesign from '@expo/vector-icons/AntDesign';
+import { useRouter } from "expo-router";
 
 
 
 export default function FloatingButton() {
-const handlePress = () => {
-    console.warn(
-        "New message"
-    )
-}
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push({
+      pathname: "/contacts"
+    });
+  }
+  
 
     return (
-<TouchableOpacity style={styles.button} onPress={handlePress}>
+<TouchableOpacity style={styles.button} onPress={handleClick}>
      
     <AntDesign name="plus" size={24} color="white" />
      </TouchableOpacity>

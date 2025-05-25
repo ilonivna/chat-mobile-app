@@ -15,7 +15,7 @@ import ChatHeader from "@/components/ChatHeader";
 import HeaderActions from "@/components/HeaderActions";
 import { Text } from "react-native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import type { RootStackParamList } from "@/types"; 
+import type { RootStackParamList } from "@/types";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -65,45 +65,46 @@ function RootLayoutNav() {
           options={{ headerShown: false, title: "" }}
         />
         <Stack.Screen name="modal" options={{ presentation: "modal" }} />
-<Stack.Screen
-  name="modalAvatar"
-  options={({ route }) => {
-    const { name } = route.params as { name: string };
-    return {
-      headerTitle: () => (
-        <Text style={{ color: "white" }}>Photo of {name}</Text>
-      ),
-      headerStyle: {
-        backgroundColor: Colors.light.tint,
-      },
-      headerTintColor: "white",
-      presentation: "modal",
-    };
-  }}
-/>
+        <Stack.Screen
+          name="modalAvatar"
+          options={({ route }) => {
+            const { name } = route.params as { name: string };
+            return {
+              headerTitle: () => (
+                <Text style={{ color: "white" }}>Photo of {name}</Text>
+              ),
+              headerStyle: {
+                backgroundColor: Colors.light.tint,
+              },
+              headerTintColor: "white",
+              presentation: "modal",
+            };
+          }}
+        />
 
-<Stack.Screen
-  name="chatroom/[id]"
-  options={({ route }) => {
-    const { name, avatar } = route.params as {
-      name: string;
-      avatar: string;
-    };
-    return {
-      headerStyle: {
-        backgroundColor: Colors.light.tint,
-      },
-      headerTitleAlign: "left",
-      headerTintColor: Colors.light.background,
-      headerTitleStyle: {
-        fontWeight: "bold",
-        fontSize: 18,
-      },
-      headerTitle: () => <ChatHeader name={name} avatar={avatar} />,
-      headerRight: () => <HeaderActions />,
-    };
-  }}
-/>
+        <Stack.Screen
+          name="chatroom/[id]"
+          options={({ route }) => {
+            const { name, avatar } = route.params as {
+              name: string;
+              avatar: string;
+            };
+            return {
+              headerStyle: {
+                backgroundColor: Colors.light.tint,
+              },
+              headerTitleAlign: "left",
+              headerTintColor: Colors.light.background,
+              headerTitleStyle: {
+                fontWeight: "bold",
+                fontSize: 18,
+              },
+              headerTitle: () => <ChatHeader name={name} avatar={avatar} />,
+              headerRight: () => <HeaderActions />,
+            };
+          }}
+        />
+        <Stack.Screen name="contacts" options={{ title: "Contacts" }} />
 
         <Stack.Screen name="+not-found" options={{ title: "Oops!" }} />
       </Stack>
