@@ -1,6 +1,7 @@
 import {
   SafeAreaView,
   StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
   View,
@@ -14,24 +15,24 @@ import { useState } from "react";
 
 export default function ChatInput() {
   const [isShown, setIsShown] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
-const onMicPress = () =>{
-console.warn("Mic pressed")
-};
+  const onMicPress = () => {
+    console.warn("Mic pressed");
+  };
 
-const onSendPress = () => {
-console.warn(`Message ${message} sent`);
-setMessage("");
-};
+  const onSendPress = () => {
+    console.warn(`Message ${message} sent`);
+    setMessage("");
+  };
 
-const handlePress = () => {
-  if (!message) {
-    onMicPress();
-  } else {
-    onSendPress();
-  }
-}
+  const handlePress = () => {
+    if (!message) {
+      onMicPress();
+    } else {
+      onSendPress();
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -42,15 +43,15 @@ const handlePress = () => {
           placeholderTextColor="#888"
           multiline
           value={message}
-          onChangeText={(text)=>{setMessage(text)}}
+          onChangeText={(text) => {
+            setMessage(text);
+          }}
         />
         <View style={styles.add}>
           <SimpleLineIcons name="emotsmile" size={24} color="black" />
-          
+
           <TouchableOpacity onPress={() => setIsShown(!isShown)}>
-        
-              <AntDesign name="plus" size={24} color="black" />
-           
+            <AntDesign name="plus" size={24} color="black" />
           </TouchableOpacity>
         </View>
 
@@ -58,16 +59,16 @@ const handlePress = () => {
           <View style={styles.addFile}>
             <MaterialIcons name="add-a-photo" size={28} color="white" />
             <EvilIcons name="paperclip" size={34} color="white" />
-            
           </View>
         )}
-      </View><TouchableOpacity style={styles.send} onPress={handlePress}>
-      {!message ? 
-        <FontAwesome name="microphone" size={24} color="white" />
-      : 
-       <FontAwesome name="send" size={20} color="white" />
-       } </TouchableOpacity>
-      
+      </View>
+      <TouchableOpacity style={styles.send} onPress={handlePress}>
+        {!message ? (
+          <FontAwesome name="microphone" size={24} color="white" />
+        ) : (
+          <FontAwesome name="send" size={20} color="white" />
+        )}
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
