@@ -14,8 +14,14 @@ import { useColorScheme } from "@/components/useColorScheme";
 import ChatHeader from "@/components/ChatHeader";
 import HeaderActions from "@/components/HeaderActions";
 import { Text } from "react-native";
-import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import type { RootStackParamList } from "@/types";
+import 'react-native-url-polyfill/auto';
+import 'react-native-get-random-values';
+
+import { Amplify } from 'aws-amplify';
+import awsconfig from '../src/aws-exports';
+
+Amplify.configure(awsconfig);
+
 
 export {
   // Catch any errors thrown by the Layout component.
