@@ -5,7 +5,7 @@ export default function HomeScreen() {
   const { user, signOut } = useAuthenticator();
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: 'white' }}>
       <Text>Heeey Welcome {user?.username}!</Text>
       <Text style={{ color: 'blue', marginTop: 20 }} onPress={signOut}>
         Sign Out
