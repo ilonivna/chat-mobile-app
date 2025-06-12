@@ -9,7 +9,7 @@ import { useAuthenticator } from '@aws-amplify/ui-react-native';
 
 export default function ChatsScreen() {
   const { user } = useAuthenticator();
-  console.log(user);
+
   return (
 
     <View style={styles.container}>

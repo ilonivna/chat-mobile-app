@@ -14,19 +14,24 @@ import { useColorScheme } from "@/components/useColorScheme";
 import ChatHeader from "@/components/ChatHeader";
 import HeaderActions from "@/components/HeaderActions";
 import { Text } from "react-native";
-import 'react-native-url-polyfill/auto';
-import 'react-native-get-random-values';
+import "react-native-url-polyfill/auto";
+import "react-native-get-random-values";
+
 import { Amplify } from 'aws-amplify';
-import awsconfig from '../src/aws-exports';
-import { Authenticator } from '@aws-amplify/ui-react-native';
+import { getUser } from '../src/graphql/queries'; 
+import { createUser } from "@/src/graphql/mutations";
+import { fetchAuthSession, getCurrentUser } from "@aws-amplify/auth";
+import { get, post } from "@aws-amplify/api";
+import awsconfig from "../src/aws-exports";
+import { Authenticator } from "@aws-amplify/ui-react-native";
 
 
+const GRAPHQL_ENDPOINT = awsconfig.aws_appsync_graphqlEndpoint;
+const REGION = awsconfig.aws_appsync_region;
+const API_KEY = awsconfig.aws_appsync_apiKey;
 Amplify.configure(awsconfig);
 
-
-export {
-  ErrorBoundary,
-} from "expo-router";
+export { ErrorBoundary } from "expo-router";
 
 export const unstable_settings = {
   initialRouteName: "(tabs)",
@@ -40,6 +45,24 @@ export default function RootLayout() {
     ...FontAwesome.font,
   });
 
+  //run this snippet only when app is mounted
+  useEffect(() => {
+    const fetchUser = async () => {
+      // get authenticated user from Auth
+      const userInfo = await getCurrentUser();
+      console.log("User:", userInfo);
+
+      // get user from backend with the user Id from Auth
+      const userId = userInfo?.signInDetails?.loginId;
+
+      if (!userId) {
+        console.warn("User ID not found");
+        return;
+      }
+      // if there is no user with such Id in DB - then create one
+    };
+    fetchUser();
+  }, []);
 
   useEffect(() => {
     if (error) throw error;
@@ -55,11 +78,13 @@ export default function RootLayout() {
     return null;
   }
 
-  return  (  <Authenticator.Provider>
+  return (
+    <Authenticator.Provider>
       <Authenticator>
         <RootLayoutNav />
       </Authenticator>
-    </Authenticator.Provider>)
+    </Authenticator.Provider>
+  );
 }
 
 function RootLayoutNav() {
